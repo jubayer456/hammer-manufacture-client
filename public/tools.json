@@ -1,0 +1,58 @@
+[
+    {
+        "name": "CRAFTSMAN",
+        "image": "https://ibb.co/album/Y0MQSm",
+        "description": "Durability: overstrike protection where fiberglass handles are most prone to break Improved grip during use: over mold grip Driving and pulling nails",
+        "minOrderQuantity": 10,
+        "availableQuantity": 500,
+        "price": 13
+    },
+    {
+        "name": "IRWIN",
+        "image": "https://ibb.co/album/Y0MQSm",
+        "description": "Forged steel head for superior durability ProTouch grip for maximum comfort even after prolonged use Smooth face leaves fewer marks on surfaces Fiberglass construction absorbs vibration and reduces fatigue",
+        "minOrderQuantity": 10,
+        "availableQuantity": 500,
+        "price": 9
+    },
+    {
+        "name": "Estwing",
+        "image": "https://ibb.co/album/Y0MQSm",
+        "description": "FORGED IN ONE PIECE The most durable, longest lasting striking tools available VERSATILITY ON THE JOB Used for forming and shaping sheet metal, striking punches, chisels & peining rivets",
+        "minOrderQuantity": 10,
+        "availableQuantity": 500,
+        "price": 37
+    },
+    {
+        "name": "Drilling Hammer",
+        "image": "https://ibb.co/album/Y0MQSm",
+        "description": " FORGED STEEL HEAD Maximum strength and durability for a lifetime of hard work BALANCE AND TEMPER The most durable, longest lasting striking tools available HEAVY HITTING HAMMER Perfectly balanced to deliver powerful blows with an easy swing.",
+        "minOrderQuantity": 10,
+        "availableQuantity": 500,
+        "price": 17
+    },
+    {
+        "name": "Sledge Hammer",
+        "image": "https://ibb.co/album/Y0MQSm",
+        "description": "Indestructible handle made with Six spring steel bars which run the full length of the handle Bars are locked with a steel locking plate ensuring the hammer never gets dislodged Vulcanized rubber grip handle absorbs vibration and reduces fatigue",
+        "minOrderQuantity": 10,
+        "availableQuantity": 500,
+        "price": 109
+    },
+    {
+        "name": "Claw Hammer",
+        "image": "https://ibb.co/album/Y0MQSm",
+        "description": "Forged Hardened Steel Head with polished smooth face Fiberglass handle with shock absorbing design Ideal for construction, home improvement, general repairs and maintenance, woodworking, art hanging, and more",
+        "minOrderQuantity": 10,
+        "availableQuantity": 500,
+        "price": 9
+    },
+    {
+        "name": "Fiberglass Hammer",
+        "image": "https://ibb.co/album/Y0MQSm",
+        "description": "Lightweight, high carbon steel head for sniper-controlled swing Ballistically balanced for maximum striking power Shock-absorbing, MOA grip for precision accuracy and less sting Compatible with SRS retention lanyards for added safety.",
+        "minOrderQuantity": 10,
+        "availableQuantity": 500,
+        "price": 19
+    }
+]
