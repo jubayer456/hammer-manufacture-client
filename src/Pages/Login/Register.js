@@ -11,14 +11,12 @@ const Register = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
 
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [updateProfile, updating] = useUpdateProfile(auth);
     const navigate = useNavigate();
-    const loaction = useLocation();
-    const from = loaction.state?.form?.pathname || '';
     if (user || gUser) {
-        navigate(from, { replace: true });
+        navigate('/home');
     }
-    if (gLoading || loading) {
+    if (gLoading || loading || updating) {
         return <Loading></Loading>
     }
     let errorElement;

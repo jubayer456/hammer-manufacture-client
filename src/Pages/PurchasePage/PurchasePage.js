@@ -7,9 +7,8 @@ const PurchasePage = () => {
     fetch(`http://localhost:5000/tools/${id}`)
         .then(res => res.json())
         .then(data => setOrder(data))
-    let min;
     const handelInput = (event) => {
-        min = event.target.value;
+        // min = event.target.value;
     }
     return (
         <div className='p-12'>

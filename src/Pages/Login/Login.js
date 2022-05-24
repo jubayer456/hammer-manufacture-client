@@ -13,8 +13,8 @@ const Login = () => {
 
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const navigate = useNavigate();
-    const loaction = useLocation();
-    const from = loaction.state?.from?.pathname || '';
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '';
     if (user || gUser) {
         navigate(from, { replace: true });
     }
