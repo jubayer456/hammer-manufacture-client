@@ -14,12 +14,16 @@ const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const navigate = useNavigate();
     const loaction = useLocation();
-    const from = loaction?.state.form.pathname || '';
+    const from = loaction.state?.from?.pathname || '';
     if (user || gUser) {
         navigate(from, { replace: true });
     }
     if (gLoading || loading) {
         return <Loading></Loading>
+    }
+    let errorElement;
+    if (error || gError) {
+        errorElement = <p className='text-red-500'>{error?.message || gError?.message}</p>
     }
     const onSubmit = async data => {
         await signInWithEmailAndPassword(data.email, data.password);
@@ -28,7 +32,7 @@ const Login = () => {
         <div>
             <div class="card w-96 bg-base-100 shadow-xl mx-auto my-8">
                 <div class="card-body">
-                    <h2 class="card-title text-3xl">Login!!!</h2>
+                    <h2 class="font-bold text-3xl text-center">Login!!!</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
 
                         <div class="form-control w-full max-w-xs">
@@ -81,6 +85,7 @@ const Login = () => {
                                 <span class="label-text">Forgot password?</span>
                             </label>
                         </div>
+                        {errorElement}
                         <input type="submit" class="btn btn-primary w-full" value='Login' />
                     </form>
                     <p>New to hammer manufacture <Link to="/register" className='text-green-500'> Create new account</Link></p>
