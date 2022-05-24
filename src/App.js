@@ -9,6 +9,7 @@ import Login from './Pages/Login/Login';
 import Register from './Pages/Login/Register';
 import Footer from './Pages/Shared/Footer';
 import PurchasePage from './Pages/PurchasePage/PurchasePage';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/register' element={<Register />}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }
