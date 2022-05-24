@@ -1,10 +1,29 @@
 import React from 'react';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
+
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+    const [signInWithEmailAndPassword, user, loading, error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const navigate = useNavigate();
+    const loaction = useLocation();
+    const from = loaction?.state.form.pathname || '';
+    if (user || gUser) {
+        navigate(from, { replace: true });
+    }
+    if (gLoading || loading) {
+        return <Loading></Loading>
+    }
+    const onSubmit = async data => {
+        await signInWithEmailAndPassword(data.email, data.password);
+    };
     return (
         <div>
             <div class="card w-96 bg-base-100 shadow-xl mx-auto my-8">
@@ -57,14 +76,16 @@ const Login = () => {
                             <label class="label">
                                 {errors.password?.type === 'required' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
                                 {errors.password?.type === 'minLength' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
-
+                            </label>
+                            <label class="label">
+                                <span class="label-text">Forgot password?</span>
                             </label>
                         </div>
                         <input type="submit" class="btn btn-primary w-full" value='Login' />
                     </form>
-                    <p>New to hammer manufacture <Link to="/register"> Create new account</Link></p>
+                    <p>New to hammer manufacture <Link to="/register" className='text-green-500'> Create new account</Link></p>
                     <div class="divider">OR</div>
-                    <button className='btn '>Google login</button>
+                    <button className='btn' onClick={() => signInWithGoogle()}>Google login</button>
                 </div>
 
             </div>
