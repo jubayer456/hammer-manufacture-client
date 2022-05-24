@@ -19,7 +19,7 @@ const PurchasePage = () => {
                 <div className='text-xl'>
                     <h3 className='font-bold text-2xl'>Name: {order.name}</h3>
                     <h3 className='font-bold'>price: {order.price} $</h3>
-                    <h3 className='font-bold'>amount of Quantity: <input onChange={handelInput} value={min < 10 ? 'disabled' : min} name='orderInput' type="number" placeholder="Type here" class="input input-bordered input-sm w-48 max-w-xs" /></h3>
+                    <h3 className='font-bold'>amount of Quantity: <input onChange={handelInput} defaultValue='10' name='orderInput' type="number" placeholder="Type here" class="input input-bordered input-sm w-48 max-w-xs" /></h3>
                     <h3 className='font-bold'>Available Quantity: {order.price}</h3>
                     <p><span className='font-bold'>Description: </span>{order.description}</p>
                 </div>
