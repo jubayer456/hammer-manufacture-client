@@ -1,4 +1,4 @@
-import { registerVersion } from 'firebase/app';
+
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -9,13 +9,14 @@ import auth from '../../firebase.init';
 const PurchasePage = () => {
     const [user] = useAuthState(auth);
     const { id } = useParams();
-    const [order, setOrder] = useState([]);
+    const [order, setOrder] = useState({});
     const [error, setError] = useState('');
     useEffect(() => {
         fetch(`http://localhost:5000/tools/${id}`)
             .then(res => res.json())
             .then(data => setOrder(data))
-    }, []);
+    }, [id]);
+
 
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
@@ -29,17 +30,40 @@ const PurchasePage = () => {
                 address: data.address,
                 phnNum: data.phnNum
             }
-            console.log(purchaseOrder);
-            setError('');
+            fetch('http://localhost:5000/booking', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(purchaseOrder)
+            })
+                .then(res => res.json())
+                .then(book => {
+                    const available = order.availableQuantity - data.quantity;
+                    const updateTools = { available };
+                    fetch(`http://localhost:5000/tools/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(updateTools)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                        })
+                    setError('');
+                    toast.success('Successfully purchase order');
+                })
         }
         else {
             if (order.minOrderQuantity > data.quantity) {
-                setError('enter a min Quantity');
-                toast('enter a min Quantity')
+                setError('Enter a minimum Quantity');
+                toast.error('Enter a minimum Quantity')
             }
             else {
-                setError('reduce the  Quantity');
-                toast('reduce the  Quantity')
+                setError('Reduce the  Quantity');
+                toast.error('Reduce the  Quantity')
             }
         }
     };
@@ -91,9 +115,9 @@ const PurchasePage = () => {
                             placeholder='Quantity'
                             className='input input-bordered w-full max-w-xs'
                             {...register("quantity")} required />
-                        <label class="label">
-                            <span class="label-text text-red-500">{error}</span>
-                        </label>
+
+                        <p class="label-text text-red-500">{error}</p>
+
                     </div>
                     <input
                         placeholder='address'

@@ -13,12 +13,10 @@ const Tool = ({ tool }) => {
                 <img src={image} alt="hammer" class="rounded-xl h-48" />
             </figure>
             <div class="card-body ">
-
                 <h2 class="card-title text-xl">Name: {name}</h2>
                 <h2 class="card-title text-lg">Price: {price}$</h2>
                 <h2 class="card-title text-lg">Min order Quantity: {minOrderQuantity}</h2>
                 <h2 class="card-title text-lg">Available order Quantity: {availableQuantity}</h2>
-
                 <p><span className='font-bold'>Description: </span>{description}</p>
                 <div class="card-actions">
                     <button onClick={() => handelOrder(_id)} class="btn btn-primary">Order Now</button>
