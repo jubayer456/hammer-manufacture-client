@@ -7,6 +7,7 @@ import About from './Pages/About/About'
 import Blog from './Pages/Blog/Blog'
 import Login from './Pages/Login/Login';
 import Footer from './Pages/Shared/Footer';
+import PurchasePage from './Pages/PurchasePage/PurchasePage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/home' element={<Home />}></Route>
         <Route path='/about' element={<About />}></Route>
         <Route path='/blog' element={<Blog />}></Route>
+        <Route path='/tools/:id' element={<PurchasePage />}></Route>
         <Route path='/login' element={<Login />}></Route>
       </Routes>
       <Footer></Footer>
