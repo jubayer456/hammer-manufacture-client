@@ -2,25 +2,19 @@
     {
         "name": "anwar",
         "image": "https://i.ibb.co/gdfYqpD/CRAFTSMAN-Hammer.jpg",
-        "comment": "Durability: overstrike protection where fiberglass handles are most prone to break Improved grip during use: over mold grip Driving and pulling nails",
-        "rating": "***"
+        "review": "Durability: overstrike protection where fiberglass handles are most prone to break Improved grip during use: over mold grip Driving and pulling nails",
+        "rating": 4
     },
     {
         "name": "sagor",
         "image": "https://i.ibb.co/FmCkRv7/IRWIN.jpg",
-        "comment": "Forged steel head for superior durability ProTouch grip for maximum comfort even after prolonged use Smooth face leaves fewer marks on surfaces ",
-        "rating": "***"
+        "review": "Forged steel head for superior durability ProTouch grip for maximum comfort even after prolonged use Smooth face leaves fewer marks on surfaces ",
+        "rating": 3
     },
     {
         "name": "abdul kader",
         "image": "https://i.ibb.co/YTnND11/Estwing.jpg",
-        "comment": "FORGED IN ONE PIECE The most durable, longest lasting striking tools available VERSATILITY ON THEing sheet metal",
-        "rating": "***"
-    },
-    {
-        "name": "Pasha kibriya",
-        "image": "https://i.ibb.co/Gn7Kp2W/Drilling-Hammer.jpg",
-        "comment": " FORGED STEEL HEAD Maximum strength and durability for a lifetime of hard work BALANCE AND TEMPER The most durable",
-        "rating": "****"
+        "review": "FORGED IN ONE PIECE The most durable, longest lasting striking tools available VERSATILITY ON THEing sheet metal",
+        "rating": 2
     }
 ]
