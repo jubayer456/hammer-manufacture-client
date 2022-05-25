@@ -2,23 +2,30 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const PurchasePage = () => {
     const [user] = useAuthState(auth);
     const { id } = useParams();
-    const [order, setOrder] = useState({});
+    // const [order, setOrder] = useState({});
     const [error, setError] = useState('');
-    useEffect(() => {
-        fetch(`http://localhost:5000/tools/${id}`)
-            .then(res => res.json())
-            .then(data => setOrder(data))
-    }, [id]);
-
-
     const { register, handleSubmit } = useForm();
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/tools/${id}`)
+    //         .then(res => res.json())
+    //         .then(data => setOrder(data))
+    // }, [id]);
+    const { data: order, isLoading, refetch } = useQuery('tools', () => fetch(`http://localhost:5000/tools/${id}`).then(res => res.json()));
+
+    if (isLoading) {
+        return <Loading />
+
+    }
+
     const onSubmit = data => {
         if (data.quantity <= order.availableQuantity && data.quantity >= order.minOrderQuantity) {
             const purchaseOrder = {
@@ -51,6 +58,7 @@ const PurchasePage = () => {
                         .then(res => res.json())
                         .then(data => {
                             console.log(data);
+                            refetch();
                         })
                     setError('');
                     toast.success('Successfully purchase order');
@@ -72,7 +80,7 @@ const PurchasePage = () => {
         <div className='p-12'>
             <h1 className='text-center text-4xl pb-10 mb-6'>Purchase page</h1>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 justify-center items-center'>
-                <img src={order.image} alt="" className='w-96' style={{ height: '450px' }} />
+                <img src={order?.image} alt="" className='w-96' style={{ height: '450px' }} />
                 <div className='text-xl'>
                     <h3 className='font-bold text-2xl'>Name: {order.name}</h3>
                     <h3 className='font-bold'>price: {order.price} $</h3>
