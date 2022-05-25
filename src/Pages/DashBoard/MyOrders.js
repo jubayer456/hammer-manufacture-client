@@ -17,7 +17,6 @@ const MyOrders = () => {
 
     return (
         <div>
-            <h1>Length:{orders.length}</h1>
             <h1 className='text-2xl py-4'>My order</h1>
             <div class="overflow-x-auto">
                 <table class="table w-full">

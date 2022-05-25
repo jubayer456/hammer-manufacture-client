@@ -13,7 +13,6 @@ const PurchasePage = () => {
     const { id } = useParams();
 
     const [error, setError] = useState('');
-    const { register, handleSubmit } = useForm();
     const { data: order, isLoading, refetch } = useQuery('tools', () => fetch(`http://localhost:5000/tools/${id}`).then(res => res.json()));
 
     if (isLoading) {
@@ -21,16 +20,17 @@ const PurchasePage = () => {
 
     }
 
-    const onSubmit = data => {
-        if (data.quantity <= order.availableQuantity && data.quantity >= order.minOrderQuantity) {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (event.target.quantity.value <= order.availableQuantity && event.target.quantity.value >= order.minOrderQuantity) {
             const purchaseOrder = {
                 userName: user.displayName,
                 email: user.email,
-                toolsName: data.orderName,
-                price: data.price,
-                quantity: data.quantity,
-                address: data.address,
-                phnNum: data.phnNum
+                toolsName: event.target.orderName.value,
+                price: event.target.price.value,
+                quantity: event.target.quantity.value,
+                address: event.target.address.value,
+                phnNum: event.target.phnNum.value
             }
             fetch('http://localhost:5000/booking', {
                 method: 'POST',
@@ -41,7 +41,7 @@ const PurchasePage = () => {
             })
                 .then(res => res.json())
                 .then(book => {
-                    const available = order.availableQuantity - data.quantity;
+                    const available = order.availableQuantity - event.target.quantity.value;
                     const updateTools = { available };
                     fetch(`http://localhost:5000/tools/${id}`, {
                         method: 'PUT',
@@ -60,7 +60,7 @@ const PurchasePage = () => {
                 })
         }
         else {
-            if (order.minOrderQuantity > data.quantity) {
+            if (order.minOrderQuantity > event.target.quantity) {
                 setError('Enter a minimum Quantity');
                 toast.error('Enter a minimum Quantity')
             }
@@ -75,7 +75,7 @@ const PurchasePage = () => {
         <div className='p-12'>
             <h1 className='text-center text-4xl pb-10 mb-6'>Purchase page</h1>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 justify-center items-center'>
-                <img src={order?.image} alt="" className='w-96' style={{ height: '450px' }} />
+                <img src={order.image} alt="" className='w-96' style={{ height: '450px' }} />
                 <div className='text-xl'>
                     <h3 className='font-bold text-2xl'>Name: {order.name}</h3>
                     <h3 className='font-bold'>price: {order.price} $</h3>
@@ -87,51 +87,53 @@ const PurchasePage = () => {
             </div>
             <div >
                 <h2 className='text-center text-3xl my-5'>Fill the Purchase Form</h2>
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-2">
                     <input type='text'
+                        name='name'
                         className='input input-bordered w-full max-w-xs mx-auto'
-                        {...register("name")}
-                        value={user?.displayName}
-                        readOnly
+                        value={user.displayName}
                     />
-                    <input type='email'
+                    <input type='email' name='email'
                         className='input input-bordered w-full max-w-xs mx-auto'
-                        {...register("email")}
-                        value={user?.email}
-                        readOnly
+                        value={user.email}
                     />
 
                     <input
+                        type='text'
+                        name='orderName'
                         className='input input-bordered w-full max-w-xs mx-auto'
-                        {...register("orderName")}
                         value={order.name}
-                        readOnly
                     />
                     <input
+                        type='text'
+                        name='price'
                         className='input input-bordered w-full max-w-xs mx-auto'
-                        {...register("price")}
                         value={order.price}
-                        readOnly
                     />
                     <div class="form-control w-full max-w-xs mx-auto">
                         <input
+                            type='number'
                             placeholder='Quantity'
+                            name='quantity'
+                            defaultValue='10'
                             className='input input-bordered w-full max-w-xs'
-                            {...register("quantity")} required
+                            required
                         />
                         <p class="label-text text-red-500">{error}</p>
 
                     </div>
                     <input
+                        type='text'
+                        name='address'
                         placeholder='address'
                         className='input input-bordered w-full max-w-xs mx-auto'
-                        {...register("address")}
                         required
                     />
                     <input
+                        type='text'
+                        name='phnNum'
                         placeholder='Phone Number'
                         className='input input-bordered w-full max-w-xs mx-auto'
-                        {...register("phnNum")}
                         required
                     />
 
