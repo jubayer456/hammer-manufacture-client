@@ -13,6 +13,7 @@ const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [deleteModal, setDeleteModal] = useState(false);
     const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking?email=${user.email}`, {
+        method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -23,7 +24,7 @@ const MyOrders = () => {
             localStorage.removeItem('accessToken');
             Navigate('/home');
         }
-        res.json()
+        return res.json();
     }));
     if (isLoading) {
         return <Loading></Loading>
@@ -49,10 +50,9 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) => <OrderRow
+                            orders?.map((order, index) => <OrderRow
                                 index={index + 1}
                                 order={order}
-                                refetch={refetch}
                                 setDeleteModal={setDeleteModal}
                             ></OrderRow>)
                         }

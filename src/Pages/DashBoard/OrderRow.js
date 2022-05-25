@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OrderRow = ({ order, index, refetch, setDeleteModal }) => {
+const OrderRow = ({ order, index, setDeleteModal }) => {
     const { email, toolsName, price, quantity, address, phnNum } = order;
     return (
         <tr>

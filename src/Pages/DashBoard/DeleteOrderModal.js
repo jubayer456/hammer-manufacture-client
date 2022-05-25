@@ -1,7 +1,7 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
+const DeleteOrderModal = ({ deleteModal, setDeleteModal }) => {
     const { _id, toolsName, quantity } = deleteModal;
     const deleteOrder = id => {
         fetch(`http://localhost:5000/booking/${id}`, {
@@ -27,7 +27,6 @@ const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
                         .then(res => res.json())
                         .then(data => {
                             console.log(data);
-                            refetch();
                             setDeleteModal(false);
                             toast.success(`${toolsName} succesfully cancell`)
                         })
