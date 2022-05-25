@@ -25,7 +25,7 @@ const MyProfile = () => {
                         <label class="label">
                             <span class="label-text">Name</span>
                         </label>
-                        <input value={user.displayName} type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                        <input defaultValue={user.displayName} type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
                     </div>
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
@@ -37,34 +37,35 @@ const MyProfile = () => {
                         <label class="label">
                             <span class="label-text">Contact Number</span>
                         </label>
-                        <input value={user.email} type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                        <input defaultValue={user.email} type="text" placeholder="Phone Number" class="input input-bordered w-full max-w-xs" />
                     </div>
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
                             <span class="label-text">Address</span>
                         </label>
-                        <input value={user.email} type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                        <input value={user.email} type="text" placeholder="Address" class="input input-bordered w-full max-w-xs" />
                     </div>
                     <div className='flex gap-8'>
                         <div class="form-control w-36 max-w-xs ">
                             <label class="label">
                                 <span class="label-text">Country</span>
                             </label>
-                            <input value={user.email} type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                            <input defaultValue={user.email} type="text" placeholder="Country" class="input input-bordered w-full max-w-xs" />
                         </div>
                         <div class="form-control w-36 max-w-xs">
                             <label class="label">
                                 <span class="label-text">City</span>
                             </label>
-                            <input defaultValue={user.email} type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                            <input defaultValue={user.email} type="text" placeholder="City" class="input input-bordered w-full max-w-xs" />
                         </div>
                     </div>
                     <input type="submit" value='update' className='btn my-5' />
 
                 </form>
-                <form onSubmit={updateProfilePic} className=''>
+                <form onSubmit={updateProfilePic} >
                     <Avatar size="160" round={true} src={img} />
                     <div >
+                        <span class="label-text">Change profile Picture</span><br />
                         <input type="file" name="" id="" />
                     </div>
                 </form>
