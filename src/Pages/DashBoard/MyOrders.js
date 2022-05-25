@@ -3,14 +3,19 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
 
+// import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
+import OrderRow from './OrderRow';
 const MyOrders = () => {
     const [user] = useAuthState(auth);
-    const { data: order, isLoading, refetch } = useQuery('order', () => {
-        fetch(`http://localhost:5000/booking/${user.email}`).then(res => res.json())
-    })
+    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking?email=${user.email}`).then(res => res.json()));
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div>
+            <h1>Length:{orders.length}</h1>
             <h1 className='text-2xl py-4'>My order</h1>
             <div class="overflow-x-auto">
                 <table class="table w-full">
@@ -19,21 +24,22 @@ const MyOrders = () => {
                             <th></th>
                             <th>Email</th>
                             <th>Product-Name</th>
-                            <th>Product-price</th>
                             <th>Product-quantity</th>
-                            <th>Address</th>
+                            <th>Product-price</th>
                             <th>phnNum</th>
+                            <th>Address</th>
                             <th>Actions</th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                        </tr>
+                        {
+                            orders.map((order, index) => <OrderRow
+                                index={index + 1}
+                                order={order}
+                                refetch={refetch}
+                            ></OrderRow>)
+                        }
 
                     </tbody>
                 </table>
