@@ -1,23 +1,7 @@
 import React from 'react';
-import { toast } from 'react-toastify';
 
-const OrderRow = ({ order, index, refetch }) => {
-    const { email, toolsName, price, quantity, address, phnNum, _id } = order;
-    const deleteOrder = id => {
-        fetch(`http://localhost:5000/booking/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'contenet-type': 'applicatioon/json'
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount > 0) {
-                    refetch();
-                    toast.success(`${toolsName} succesfully cancell`)
-                }
-            })
-    }
+const OrderRow = ({ order, index, refetch, setDeleteModal }) => {
+    const { email, toolsName, price, quantity, address, phnNum } = order;
     return (
         <tr>
             <th>{index}</th>
@@ -27,7 +11,9 @@ const OrderRow = ({ order, index, refetch }) => {
             <td>{price}</td>
             <td>{phnNum}</td>
             <td>{address}</td>
-            <td><button onClick={() => deleteOrder(_id)} className='btn btn-sm btn-error text-base-100'>Cancel</button></td>
+            <td>
+                <label onClick={() => setDeleteModal(order)} for="deleteOrder" class="btn btn-sm btn-error text-base-100">Cencel</label>
+            </td>
         </tr>
     );
 };

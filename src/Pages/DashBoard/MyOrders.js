@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
 
 // import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import DeleteOrderModal from './DeleteOrderModal';
 import OrderRow from './OrderRow';
 const MyOrders = () => {
     const [user] = useAuthState(auth);
+    const [deleteModal, setDeleteModal] = useState(false);
     const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking?email=${user.email}`).then(res => res.json()));
     if (isLoading) {
         return <Loading></Loading>
@@ -38,12 +40,20 @@ const MyOrders = () => {
                                 index={index + 1}
                                 order={order}
                                 refetch={refetch}
+                                setDeleteModal={setDeleteModal}
                             ></OrderRow>)
                         }
 
                     </tbody>
                 </table>
             </div>
+            {
+                deleteModal && <DeleteOrderModal
+                    deleteModal={deleteModal}
+                    refetch={refetch}
+                    setDeleteModal={setDeleteModal}
+                ></DeleteOrderModal>
+            }
         </div>
     );
 };
