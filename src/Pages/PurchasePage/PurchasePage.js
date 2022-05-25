@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
@@ -8,17 +7,13 @@ import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
+
 const PurchasePage = () => {
     const [user] = useAuthState(auth);
     const { id } = useParams();
-    // const [order, setOrder] = useState({});
+
     const [error, setError] = useState('');
     const { register, handleSubmit } = useForm();
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/tools/${id}`)
-    //         .then(res => res.json())
-    //         .then(data => setOrder(data))
-    // }, [id]);
     const { data: order, isLoading, refetch } = useQuery('tools', () => fetch(`http://localhost:5000/tools/${id}`).then(res => res.json()));
 
     if (isLoading) {
@@ -122,8 +117,8 @@ const PurchasePage = () => {
                         <input
                             placeholder='Quantity'
                             className='input input-bordered w-full max-w-xs'
-                            {...register("quantity")} required />
-
+                            {...register("quantity")} required
+                        />
                         <p class="label-text text-red-500">{error}</p>
 
                     </div>

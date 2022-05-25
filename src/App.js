@@ -8,12 +8,15 @@ import Login from './Pages/Login/Login';
 import Register from './Pages/Login/Register';
 import Footer from './Pages/Shared/Footer';
 
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PurchasePage from './Pages/PurchasePage/PurchasePage';
 import NotFound from './Pages/Shared/NotFound';
 import RequireAuth from './Pages/Login/RequireAuth';
+import DashBoard from './Pages/DashBoard/DashBoard';
+import MyOrders from './Pages/DashBoard/MyOrders';
+import MyReviews from './Pages/DashBoard/MyReviews';
+import MyProfile from './Pages/DashBoard/MyProfile';
 
 
 function App() {
@@ -31,6 +34,13 @@ function App() {
         }></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
+        <Route path='/dashboard' element={<RequireAuth><DashBoard />  </RequireAuth>}>
+          <Route index element={<MyProfile />} />
+          <Route path="myprofile" element={<MyProfile />} />
+          <Route path="myorders" element={<MyOrders />} />
+          <Route path="myreview" element={<MyReviews />} />
+
+        </Route>
       </Routes>
       <ToastContainer></ToastContainer>
       <Footer></Footer>
