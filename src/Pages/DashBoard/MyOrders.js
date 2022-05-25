@@ -1,6 +1,8 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { Navigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 // import auth from '../../firebase.init';
@@ -10,7 +12,19 @@ import OrderRow from './OrderRow';
 const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [deleteModal, setDeleteModal] = useState(false);
-    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking?email=${user.email}`).then(res => res.json()));
+    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking?email=${user.email}`, {
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => {
+        console.log('response of My bookings', res);
+        if (res.status === 401 || res.status === 403) {
+            signOut(auth);
+            localStorage.removeItem('accessToken');
+            Navigate('/home');
+        }
+        res.json()
+    }));
     if (isLoading) {
         return <Loading></Loading>
     }
