@@ -19,10 +19,7 @@ const DeleteProductModal = ({ deleteModal, setDeleteModal, refetch }) => {
                     toast.success(`${name} succesfully Deleted`)
                 }
             })
-
-
     }
-
     return (
         <div>
 
