@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useToken from '../../Hooks/useToken';
 import Loading from '../Shared/Loading';
 
 const Register = () => {
@@ -13,9 +14,12 @@ const Register = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [updateProfile, updating] = useUpdateProfile(auth);
     const navigate = useNavigate();
-    if (user || gUser) {
-        navigate('/home');
-    }
+    const [token] = useToken(user || gUser);
+    useEffect(() => {
+        if (token) {
+            navigate('/home');
+        }
+    }, [token, navigate]);
     if (gLoading || loading || updating) {
         return <Loading></Loading>
     }

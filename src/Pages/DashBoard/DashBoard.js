@@ -13,9 +13,12 @@ const DashBoard = () => {
                 <label for="DashboardModal" class="drawer-overlay"></label>
                 <ul class="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
 
+                    <li><Link to='dashboard'>My Profile</Link></li>
                     <li><Link to='myorders'>My Order</Link></li>
                     <li><Link to='myreview'>Add Review</Link></li>
-                    <li><Link to='myprofile'>My Profile</Link></li>
+                    <li><Link to='allproduct'>Manage All Products</Link></li>
+                    <li><Link to='addproduct'>Add Product</Link></li>
+                    <li><Link to='manageuser'>Manage Users</Link></li>
                 </ul>
 
             </div>

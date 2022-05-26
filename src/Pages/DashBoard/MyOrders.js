@@ -2,16 +2,15 @@ import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-
-// import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import DeleteOrderModal from './DeleteOrderModal';
 import OrderRow from './OrderRow';
 const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [deleteModal, setDeleteModal] = useState(false);
+    const navigate = useNavigate();
     const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking?email=${user.email}`, {
         method: 'GET',
         headers: {
@@ -22,7 +21,7 @@ const MyOrders = () => {
         if (res.status === 401 || res.status === 403) {
             signOut(auth);
             localStorage.removeItem('accessToken');
-            Navigate('/home');
+            navigate('/home');
         }
         return res.json();
     }));
@@ -50,7 +49,8 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            orders?.map((order, index) => <OrderRow
+                            orders.map((order, index) => <OrderRow
+                                key={order._id}
                                 index={index + 1}
                                 order={order}
                                 setDeleteModal={setDeleteModal}
