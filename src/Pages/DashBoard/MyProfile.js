@@ -51,38 +51,38 @@ const MyProfile = () => {
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input defaultValue={user.displayName} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                        <input readOnly defaultValue={user.displayName} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input value={user.email} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+                        <input readOnly value={user.email} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Contact Number</span>
                         </label>
-                        <input defaultValue={user.email} type="text" placeholder="Phone Number" className="input input-bordered w-full max-w-xs" />
+                        <input onChange='' defaultValue={user.email} type="text" placeholder="Phone Number" className="input input-bordered w-full max-w-xs" />
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Address</span>
                         </label>
-                        <input value={user.email} type="text" placeholder="Address" className="input input-bordered w-full max-w-xs" />
+                        <input onChange='' defaultValue={user.email} type="text" placeholder="Address" className="input input-bordered w-full max-w-xs" />
                     </div>
                     <div className='flex gap-8'>
                         <div className="form-control w-36 max-w-xs ">
                             <label className="label">
                                 <span className="label-text">Country</span>
                             </label>
-                            <input defaultValue={user.email} type="text" placeholder="Country" className="input input-bordered w-full max-w-xs" />
+                            <input onChange='' defaultValue={user.email} type="text" placeholder="Country" className="input input-bordered w-full max-w-xs" />
                         </div>
                         <div className="form-control w-36 max-w-xs">
                             <label className="label">
                                 <span className="label-text">City</span>
                             </label>
-                            <input defaultValue={user.email} type="text" placeholder="City" className="input input-bordered w-full max-w-xs" />
+                            <input onChange='' defaultValue={user.email} type="text" placeholder="City" className="input input-bordered w-full max-w-xs" />
                         </div>
                     </div>
                     <input type="submit" value='update' className='btn my-5' />
