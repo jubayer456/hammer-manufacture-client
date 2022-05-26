@@ -109,7 +109,7 @@ const PurchasePage = () => {
                         className='input input-bordered w-full max-w-xs mx-auto'
                         value={order.price}
                     />
-                    <div class="form-control w-full max-w-xs mx-auto">
+                    <div className="form-control w-full max-w-xs mx-auto">
                         <input
                             type='number'
                             placeholder='Quantity'
@@ -118,7 +118,7 @@ const PurchasePage = () => {
                             className='input input-bordered w-full max-w-xs'
                             required
                         />
-                        <p class="label-text text-red-500">{error}</p>
+                        <p className="label-text text-red-500">{error}</p>
 
                     </div>
                     <input
@@ -136,7 +136,7 @@ const PurchasePage = () => {
                         required
                     />
 
-                    <input type="submit" value='Submit' class="mx-auto btn w-full max-w-xs" />
+                    <input type="submit" value='Submit' className="mx-auto btn w-full max-w-xs" />
 
                 </form>
             </div>

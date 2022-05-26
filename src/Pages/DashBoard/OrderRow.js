@@ -12,7 +12,7 @@ const OrderRow = ({ order, index, setDeleteModal }) => {
             <td>{phnNum}</td>
             <td>{address}</td>
             <td>
-                <label onClick={() => setDeleteModal(order)} for="deleteOrder" class="btn btn-sm btn-error text-base-100">Cencel</label>
+                <label onClick={() => setDeleteModal(order)} for="deleteOrder" className="btn btn-sm btn-error text-base-100">Cencel</label>
             </td>
         </tr>
     );

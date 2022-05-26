@@ -41,14 +41,14 @@ const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
     return (
         <div>
 
-            <input type="checkbox" id="deleteOrder" class="modal-toggle" />
-            <div class="modal">
-                <div class="modal-box">
-                    <h3 class="font-bold text-lg">Are you sure You want to delete ${toolsName}</h3>
-                    <p class="py-4">If you click delete then You can not retrieve deleted item</p>
-                    <div class="modal-action">
+            <input type="checkbox" id="deleteOrder" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Are you sure You want to delete ${toolsName}</h3>
+                    <p className="py-4">If you click delete then You can not retrieve deleted item</p>
+                    <div className="modal-action">
                         <button onClick={() => deleteOrder(_id)} className='btn btn-sm btn-error text-base-100'>Yes</button>
-                        <label for="deleteOrder" class="btn btn-sm">No</label>
+                        <label for="deleteOrder" className="btn btn-sm">No</label>
                     </div>
                 </div>
             </div>

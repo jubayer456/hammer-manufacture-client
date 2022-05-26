@@ -5,8 +5,8 @@ const ProductRow = ({ order, index, setDeleteModal }) => {
     return (
         <tr>
             <th>{index}</th>
-            <td><div class="avatar">
-                <div class="mask mask-squircle w-12 h-12">
+            <td><div className="avatar">
+                <div className="mask mask-squircle w-12 h-12">
                     <img src={image} alt="Avatar Tailwind CSS Component" />
                 </div>
             </div></td>
@@ -15,7 +15,7 @@ const ProductRow = ({ order, index, setDeleteModal }) => {
             <td>{minOrderQuantity}</td>
             <td>{availableQuantity}</td>
             <td>
-                <label onClick={() => setDeleteModal(order)} for="deleteProduct" class="btn btn-sm btn-error text-base-100">Delete</label>
+                <label onClick={() => setDeleteModal(order)} for="deleteProduct" className="btn btn-sm btn-error text-base-100">Delete</label>
             </td>
         </tr>
     );

@@ -11,7 +11,7 @@ const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [deleteModal, setDeleteModal] = useState(false);
     const navigate = useNavigate();
-    const { data: orders, isLoading, refetch } = useQuery('order', () => fetch(`http://localhost:5000/booking?email=${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery('MyOrder', () => fetch(`http://localhost:5000/booking?email=${user.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -19,6 +19,7 @@ const MyOrders = () => {
     }).then(res => {
         console.log('response of My bookings', res);
         if (res.status === 401 || res.status === 403) {
+            console.log(res);
             signOut(auth);
             localStorage.removeItem('accessToken');
             navigate('/home');
@@ -31,9 +32,10 @@ const MyOrders = () => {
 
     return (
         <div>
+            <h4 className='text-5xl'>order: {orders.length}</h4>
             <h1 className='text-2xl py-4'>My order</h1>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>

@@ -38,30 +38,30 @@ const MyReviews = () => {
         <div className='mx-3 w-96'>
             <h1 className='text-2xl py-4'>Please give a review</h1>
             <form onSubmit={submitReview}>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Your Name</span>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Your Name</span>
                     </label>
-                    <input name='name' value={user.displayName} type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" required />
+                    <input name='name' value={user.displayName} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" required />
                 </div>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Your Email</span>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Your Email</span>
                     </label>
-                    <input name='email' value={user.email} type="email" placeholder="Type here" class="input input-bordered w-full max-w-xs" required />
+                    <input name='email' value={user.email} type="email" placeholder="Type here" className="input input-bordered w-full max-w-xs" required />
                 </div>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Please Give a ratings out of 5</span>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Please Give a ratings out of 5</span>
                     </label>
-                    <input name='rating' type="number" placeholder="Type here" class="input input-bordered w-full max-w-xs" required />
+                    <input name='rating' type="number" placeholder="Type here" className="input input-bordered w-full max-w-xs" required />
                     <span className='text-red-500'>{error}</span>
                 </div>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Your Review</span>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Your Review</span>
                     </label>
-                    <textarea name='review' class="textarea textarea-bordered" placeholder="Review" required></textarea>
+                    <textarea name='review' className="textarea textarea-bordered" placeholder="Review" required></textarea>
                 </div>
                 <input type="submit" value="Submit" className='mx-auto btn w-full max-w-xs my-2' />
             </form>

@@ -56,9 +56,9 @@ const AddProduct = () => {
         <div className='p-12'>
             <h1 className='text-2xl'>Add product</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Product Name</span>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Product Name</span>
                     </label>
                     <input type='text'
                         name='name'
@@ -67,9 +67,9 @@ const AddProduct = () => {
                         required
                     />
                 </div>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Product price</span>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Product price</span>
                     </label>
                     <input type='text'
                         className='input input-bordered w-full max-w-xs '
@@ -77,9 +77,9 @@ const AddProduct = () => {
                         required
                     />
                 </div>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Minimum order Quantity</span>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Minimum order Quantity</span>
                     </label>
                     <input
                         type='text'
@@ -88,9 +88,9 @@ const AddProduct = () => {
                         required
                     />
                 </div>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Available Quantity</span>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Available Quantity</span>
                     </label>
                     <input
                         type='text'
@@ -100,9 +100,9 @@ const AddProduct = () => {
                     />
                     <span className='text-red-500'>{error}</span>
                 </div>
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Add product Picture</span>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Add product Picture</span>
                     </label>
                     <input
                         type='file'
@@ -112,19 +112,19 @@ const AddProduct = () => {
                     />
 
                 </div>
-                <div class="form-control w-full max-w-xs ">
-                    <label class="label">
-                        <span class="label-text">Product Description</span>
+                <div className="form-control w-full max-w-xs ">
+                    <label className="label">
+                        <span className="label-text">Product Description</span>
                     </label>
                     <textarea
-                        class="textarea textarea-bordered"
+                        className="textarea textarea-bordered"
                         placeholder="Description"
                         {...register("description")}
                         required></textarea>
 
                 </div>
 
-                <input type="submit" value='Add Product' class=" btn w-full max-w-xs my-3" />
+                <input type="submit" value='Add Product' className=" btn w-full max-w-xs my-3" />
 
             </form>
         </div>

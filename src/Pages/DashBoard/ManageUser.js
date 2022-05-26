@@ -4,6 +4,7 @@ const ManageUser = () => {
     return (
         <div>
             <h1 className='text-2xl'>Manage user</h1>
+
         </div>
     );
 };

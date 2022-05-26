@@ -20,8 +20,8 @@ const AllProducts = () => {
             <h1 className='text-2xl'>All products</h1>
             <div>
                 <h1 className='text-2xl py-4'>My order</h1>
-                <div class="overflow-x-auto">
-                    <table class="table w-full">
+                <div className="overflow-x-auto">
+                    <table className="table w-full">
                         <thead>
                             <tr>
                                 <th></th>
