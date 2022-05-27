@@ -15,7 +15,7 @@ const ProductRow = ({ order, index, setDeleteModal }) => {
             <td>{minOrderQuantity}</td>
             <td>{availableQuantity}</td>
             <td>
-                <label onClick={() => setDeleteModal(order)} for="deleteProduct" className="btn btn-sm btn-error text-base-100">Delete</label>
+                <label onClick={() => setDeleteModal(order)} htmlFor="deleteProduct" className="btn btn-sm btn-error text-base-100">Delete</label>
             </td>
         </tr>
     );

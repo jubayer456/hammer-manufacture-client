@@ -6,11 +6,14 @@ const UserRow = ({ user, index, setRemoveUserModal, refetch }) => {
     const { email, role } = user;
 
     const makeAdmin = email => {
+        const updateRole = { role: 'admin' }
         fetch(`http://localhost:5000/users/admin/${email}`, {
             method: 'PUT',
             headers: {
-                'content-type': 'application/json'
-            }
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(updateRole)
         })
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
@@ -19,9 +22,13 @@ const UserRow = ({ user, index, setRemoveUserModal, refetch }) => {
                 return res.json();
             })
             .then(data => {
+                console.log(data);
                 if (data.modifiedCount > 0) {
                     refetch();
                     toast.success('Successfully made and admin');
+                }
+                else {
+                    toast.error('Can not made and admin');
                 }
             });
     }

@@ -1,12 +1,15 @@
-import { async } from '@firebase/util';
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 
 const AddProduct = () => {
     const { register, handleSubmit } = useForm();
     const imageStorage = '87daff5d6c83e393f1571b44cd608116';
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const onSubmit = async (data) => {
         if (data.minOrderQuantity <= data.availableQuantity) {
@@ -38,10 +41,24 @@ const AddProduct = () => {
                             },
                             body: JSON.stringify(AddProduct)
                         })
-                            .then(res => res.json())
+                            .then(res => {
+                                if (res.status === 401 || res.status === 403) {
+                                    console.log(res);
+                                    toast.error(`${res.statusText} Access`);
+                                    signOut(auth);
+                                    localStorage.removeItem('accessToken');
+                                    navigate('/home');
+                                }
+                                return res.json();
+                            })
                             .then(book => {
+                                if (book.insertedId) {
+                                    toast.success('Successfully Add Product');
+                                }
+                                else {
+                                    toast.error('Can not Add Product');
+                                }
                                 setError('');
-                                toast.success('Successfully Add Product');
                             })
                     };
                 }
