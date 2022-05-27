@@ -7,10 +7,13 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
     const imageStorage = '87daff5d6c83e393f1571b44cd608116';
     const { data: users, isLoading, refetch } = useQuery('usersInProfile', () => fetch(`http://localhost:5000/users?email=${user.email}`).then(res => res.json()));
     if (isLoading) {
@@ -34,10 +37,25 @@ const MyProfile = () => {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(updateProfileInf)
-        }).then(res => res.json())
+        }).then(res => {
+            if (res.status === 401 || res.status === 403) {
+                console.log(res);
+                toast.error(`${res.statusText} Access`);
+                signOut(auth);
+                localStorage.removeItem('accessToken');
+                navigate('/home');
+            }
+            return res.json();
+        })
             .then(update => {
-                refetch();
-                toast.success('Successfully updated Profile Information');
+                if (update.acknowledged) {
+                    refetch();
+                    toast.success('Successfully updated Profile Information');
+                }
+                else {
+                    toast.error('Can not  updated Profile Information');
+                }
+
             })
     }
     const updateProfilePic = data => {
@@ -61,10 +79,25 @@ const MyProfile = () => {
                             authorization: `Bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(updateProfile)
-                    }).then(res => res.json())
+                    }).then(res => {
+                        if (res.status === 401 || res.status === 403) {
+                            console.log(res);
+                            toast.error(`${res.statusText} Access`);
+                            signOut(auth);
+                            localStorage.removeItem('accessToken');
+                            navigate('/home');
+                        }
+                        return res.json();
+                    })
                         .then(update => {
-                            refetch();
-                            toast.success('Successfully updated profile Picture');
+                            if (update.acknowledged) {
+                                refetch();
+                                toast.success('Successfully updated Profile Picture');
+                            }
+                            else {
+                                toast.error('Can not  updated Profile Picture');
+                            }
+
                         })
                 }
             })

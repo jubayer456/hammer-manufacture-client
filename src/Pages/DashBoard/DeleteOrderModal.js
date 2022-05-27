@@ -20,7 +20,8 @@ const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
                     fetch(`http://localhost:5000/tools/${toolsId}`, {
                         method: 'PUT',
                         headers: {
-                            'content-type': 'application/json'
+                            'content-type': 'application/json',
+                            authorization: `Bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(updateTools)
                     })
