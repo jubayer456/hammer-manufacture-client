@@ -129,6 +129,7 @@ const PurchasePage = () => {
                         required
                     />
                     <input
+
                         type='text'
                         name='phnNum'
                         placeholder='Phone Number'

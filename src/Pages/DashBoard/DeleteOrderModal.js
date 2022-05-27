@@ -28,7 +28,7 @@ const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
                         .then(data => {
                             console.log(data);
                             refetch();
-                            setDeleteModal(false);
+                            setDeleteModal(null);
                             toast.success(`${toolsName} succesfully cancell`)
                         })
 
