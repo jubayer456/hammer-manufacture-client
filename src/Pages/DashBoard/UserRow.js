@@ -1,10 +1,13 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 
 
 const UserRow = ({ user, index, setRemoveUserModal, refetch }) => {
     const { email, role } = user;
-
+    const navigate = useNavigate();
     const makeAdmin = email => {
         const updateRole = { role: 'admin' }
         fetch(`http://localhost:5000/users/admin/${email}`, {
@@ -17,12 +20,14 @@ const UserRow = ({ user, index, setRemoveUserModal, refetch }) => {
         })
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
-                    toast.error('Failed to make an admin');
+                    toast.error(`${res.statusText} Access`);
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                    navigate('/home');
                 }
                 return res.json();
             })
             .then(data => {
-                console.log(data);
                 if (data.modifiedCount > 0) {
                     refetch();
                     toast.success('Successfully made and admin');

@@ -1,11 +1,14 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const MyReviews = () => {
     const [user] = useAuthState(auth);
-    const [error, setError] = useState([]);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
     const submitReview = (event) => {
         event.preventDefault();
         const rating = event.target.rating.value;
@@ -19,14 +22,28 @@ const MyReviews = () => {
             fetch('http://localhost:5000/reviews', {
                 method: 'POST',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 },
                 body: JSON.stringify(addReview)
             })
-                .then(res => res.json())
+                .then(res => {
+                    if (res.status === 401 || res.status === 403) {
+                        toast.error(`${res.statusText} Access`);
+                        signOut(auth);
+                        localStorage.removeItem('accessToken');
+                        navigate('/home');
+                    }
+                    return res.json();
+                })
                 .then(data => {
-                    console.log(data);
-                    toast('Successfully give the review');
+                    if (data.insertId) {
+                        toast.success('Successfully give the review');
+                    }
+                    else {
+                        toast.error('do not give the review');
+                    }
+
                 })
         }
         else {

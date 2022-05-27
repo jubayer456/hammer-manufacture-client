@@ -7,7 +7,8 @@ const DeleteUserModal = ({ removeUserModal, setRemoveUserModal, refetch }) => {
         fetch(`http://localhost:5000/users/${id}`, {
             method: 'DELETE',
             headers: {
-                'contenet-type': 'applicatioon/json'
+                'contenet-type': 'applicatioon/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())
