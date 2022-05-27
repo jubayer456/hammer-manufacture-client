@@ -1,8 +1,12 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 
 const DeleteUserModal = ({ removeUserModal, setRemoveUserModal, refetch }) => {
     const { _id, email } = removeUserModal;
+    const navigate = useNavigate();
     const deleteProduct = id => {
         fetch(`http://localhost:5000/users/${id}`, {
             method: 'DELETE',
@@ -11,7 +15,15 @@ const DeleteUserModal = ({ removeUserModal, setRemoveUserModal, refetch }) => {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    toast.error(`${res.statusText} Access`);
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                    navigate('/home');
+                }
+                return res.json();
+            })
             .then(data => {
                 if (data.deletedCount > 0) {
                     refetch();

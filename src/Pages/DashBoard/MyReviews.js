@@ -43,6 +43,7 @@ const MyReviews = () => {
                     else {
                         toast.error('do not give the review');
                     }
+                    setError('')
 
                 })
         }

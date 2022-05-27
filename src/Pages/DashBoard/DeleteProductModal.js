@@ -34,7 +34,7 @@ const DeleteProductModal = ({ deleteModal, setDeleteModal, refetch }) => {
                 }
                 else {
                     setDeleteModal(false);
-                    toast.error(`${name} did not Deleted`)
+                    toast.err(`${name} did not Deleted`)
                 }
             })
     }

@@ -1,8 +1,12 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 
 const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
     const { _id, toolsName, quantity } = deleteModal;
+    const navigate = useNavigate();
     const deleteOrder = id => {
         fetch(`http://localhost:5000/booking/${id}`, {
             method: 'DELETE',
@@ -13,7 +17,6 @@ const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.success.deletedCount > 0) {
-
                     const available = parseInt(data.update.availableQuantity) + parseInt(quantity);
                     const toolsId = data.update._id;
                     const updateTools = { available };
@@ -25,9 +28,16 @@ const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
                         },
                         body: JSON.stringify(updateTools)
                     })
-                        .then(res => res.json())
+                        .then(res => {
+                            if (res.status === 401 || res.status === 403) {
+                                toast.error(`${res.statusText} Access`);
+                                signOut(auth);
+                                localStorage.removeItem('accessToken');
+                                navigate('/home');
+                            }
+                            return res.json();
+                        })
                         .then(data => {
-                            console.log(data);
                             refetch();
                             setDeleteModal(null);
                             toast.success(`${toolsName} succesfully cancell`)

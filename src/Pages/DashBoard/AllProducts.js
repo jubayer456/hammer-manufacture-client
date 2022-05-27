@@ -1,17 +1,30 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import DeleteProductModal from './DeleteProductModal';
 import ProductRow from './ProductRow';
 
 const AllProducts = () => {
     const [deleteModal, setDeleteModal] = useState(false);
+    const navigate = useNavigate();
     const { data: orders, isLoading, refetch } = useQuery('AllTools', () => fetch('http://localhost:5000/tools', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
-    }).then(res => res.json()));
+    }).then(res => {
+        if (res.status === 401 || res.status === 403) {
+            toast.error(`${res.statusText} Access`);
+            signOut(auth);
+            localStorage.removeItem('accessToken');
+            navigate('/home');
+        }
+        return res.json();
+    }));
     if (isLoading) {
         return <Loading></Loading>
     }
