@@ -2,7 +2,6 @@ import './App.css';
 import NavBar from './Pages/Shared/NavBar';
 import { Route, Routes } from 'react-router-dom';
 import Home from './Pages/Home/Home';
-import About from './Pages/About/About'
 import Blog from './Pages/Blog/Blog'
 import Login from './Pages/Login/Login';
 import AdminAuth from './Pages/Login/AdminAuth';
@@ -22,6 +21,7 @@ import ManageUser from './Pages/DashBoard/ManageUser';
 import AddProduct from './Pages/DashBoard/AddProduct';
 import AllProducts from './Pages/DashBoard/AllProducts';
 import Payment from './Pages/DashBoard/Payment';
+import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
 
 
 function App() {
@@ -31,8 +31,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
-        <Route path='/about' element={<About />}></Route>
+        {/* <Route path='/about' element={<About />}></Route> */}
         <Route path='/blog' element={<Blog />}></Route>
+        <Route path='/myportfolio' element={<MyPortfolio />}></Route>
         <Route path='*' element={<NotFound />}></Route>
         <Route path='/tools/:id' element={
           <RequireAuth><PurchasePage /></RequireAuth>
