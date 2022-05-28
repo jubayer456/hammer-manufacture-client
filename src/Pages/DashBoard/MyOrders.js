@@ -12,7 +12,7 @@ const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [deleteModal, setDeleteModal] = useState(null);
     const navigate = useNavigate();
-    const { data: orders, isLoading, refetch } = useQuery('MyOrder', () => fetch(`http://localhost:5000/booking?email=${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery('MyOrder', () => fetch(`https://agile-chamber-23774.herokuapp.com/booking?email=${user.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

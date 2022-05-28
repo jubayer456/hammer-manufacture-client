@@ -9,7 +9,7 @@ const Payment = () => {
     const { orderId } = useParams();
     const stripePromise =
         loadStripe('pk_test_51L4JARD2IOxGf7i4IzxCXM5VMFsFTdIkjFMWnBl53um4DWU8gKqiw5nXD20mrkr5H7HU0XekDiPg9V3r4Vu59V1U00tPTZkLMF');
-    const { data: order, isLoading } = useQuery([Payment, orderId], () => fetch(`http://localhost:5000/booking/${orderId}`
+    const { data: order, isLoading } = useQuery([Payment, orderId], () => fetch(`https://agile-chamber-23774.herokuapp.com/booking/${orderId}`
         , {
             method: 'GET',
             headers: {
@@ -36,7 +36,7 @@ const Payment = () => {
             <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                 <div class="card-body">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm orde={order} />
+                        <CheckoutForm order={order} />
                     </Elements>
                 </div>
             </div>

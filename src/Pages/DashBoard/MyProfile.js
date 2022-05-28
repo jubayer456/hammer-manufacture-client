@@ -15,7 +15,7 @@ const MyProfile = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const imageStorage = '87daff5d6c83e393f1571b44cd608116';
-    const { data: users, isLoading, refetch } = useQuery('usersInProfile', () => fetch(`http://localhost:5000/users?email=${user.email}`, {
+    const { data: users, isLoading, refetch } = useQuery('usersInProfile', () => fetch(`https://agile-chamber-23774.herokuapp.com/users?email=${user.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -35,7 +35,7 @@ const MyProfile = () => {
             country: event.target.country.value,
             city: event.target.city.value
         }
-        fetch(`http://localhost:5000/profile/${user.email}`, {
+        fetch(`https://agile-chamber-23774.herokuapp.com/profile/${user.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -77,7 +77,7 @@ const MyProfile = () => {
                 if (result.success) {
                     const img = result.data.url;
                     const updateProfile = { image: img }
-                    fetch(`http://localhost:5000/profile/${user.email}`, {
+                    fetch(`https://agile-chamber-23774.herokuapp.com/profile/${user.email}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',

@@ -6,7 +6,7 @@ const useToken = (user) => {
         const email = user?.user?.email;
         const currentUser = { email: email }
         if (email) {
-            fetch(`http://localhost:5000/users/${email}`, {
+            fetch(`https://agile-chamber-23774.herokuapp.com/users/${email}`, {
                 method: 'PUT',
                 headers: {
                     'body-content': 'application/json'

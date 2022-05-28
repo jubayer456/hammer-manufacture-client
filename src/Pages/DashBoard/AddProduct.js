@@ -33,7 +33,7 @@ const AddProduct = () => {
                             description: data.description,
                             image: img
                         }
-                        fetch('http://localhost:5000/tools', {
+                        fetch('https://agile-chamber-23774.herokuapp.com/tools', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json',

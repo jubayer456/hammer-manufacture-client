@@ -11,7 +11,7 @@ import ProductRow from './ProductRow';
 const AllProducts = () => {
     const [deleteModal, setDeleteModal] = useState(false);
     const navigate = useNavigate();
-    const { data: orders, isLoading, refetch } = useQuery('AllTools', () => fetch('http://localhost:5000/tools', {
+    const { data: orders, isLoading, refetch } = useQuery('AllTools', () => fetch('https://agile-chamber-23774.herokuapp.com/tools', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

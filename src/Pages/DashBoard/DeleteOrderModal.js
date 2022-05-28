@@ -8,7 +8,7 @@ const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
     const { _id, toolsName, quantity } = deleteModal;
     const navigate = useNavigate();
     const deleteOrder = id => {
-        fetch(`http://localhost:5000/booking/${id}`, {
+        fetch(`https://agile-chamber-23774.herokuapp.com/booking/${id}`, {
             method: 'DELETE',
             headers: {
                 'contenet-type': 'applicatioon/json'
@@ -20,7 +20,7 @@ const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
                     const available = parseInt(data.update.availableQuantity) + parseInt(quantity);
                     const toolsId = data.update._id;
                     const updateTools = { available };
-                    fetch(`http://localhost:5000/tools/${toolsId}`, {
+                    fetch(`https://agile-chamber-23774.herokuapp.com/tools/${toolsId}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',

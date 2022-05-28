@@ -8,7 +8,7 @@ const DeleteProductModal = ({ deleteModal, setDeleteModal, refetch }) => {
     const { _id, name } = deleteModal;
     const navigate = useNavigate();
     const deleteOrder = id => {
-        fetch(`http://localhost:5000/tools/${id}`, {
+        fetch(`https://agile-chamber-23774.herokuapp.com/tools/${id}`, {
             method: 'DELETE',
             headers: {
                 'contenet-type': 'applicatioon/json',

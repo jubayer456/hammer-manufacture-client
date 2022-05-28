@@ -10,7 +10,7 @@ const UserRow = ({ user, index, setRemoveUserModal, refetch }) => {
     const navigate = useNavigate();
     const makeAdmin = email => {
         const updateRole = { role: 'admin' }
-        fetch(`http://localhost:5000/users/admin/${email}`, {
+        fetch(`https://agile-chamber-23774.herokuapp.com/users/admin/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

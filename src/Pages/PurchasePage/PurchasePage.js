@@ -12,7 +12,7 @@ const PurchasePage = () => {
     const { id } = useParams();
 
     const [error, setError] = useState('');
-    const { data: order, isLoading, refetch } = useQuery('tools', () => fetch(`http://localhost:5000/tools/${id}`).then(res => res.json()));
+    const { data: order, isLoading, refetch } = useQuery('tools', () => fetch(`https://agile-chamber-23774.herokuapp.com/tools/${id}`).then(res => res.json()));
 
     if (isLoading) {
         return <Loading />
@@ -31,7 +31,7 @@ const PurchasePage = () => {
                 address: event.target.address.value,
                 phnNum: event.target.phnNum.value
             }
-            fetch('http://localhost:5000/booking', {
+            fetch('https://agile-chamber-23774.herokuapp.com/booking', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -42,7 +42,7 @@ const PurchasePage = () => {
                 .then(book => {
                     const available = order.availableQuantity - event.target.quantity.value;
                     const updateTools = { available };
-                    fetch(`http://localhost:5000/tools/${id}`, {
+                    fetch(`https://agile-chamber-23774.herokuapp.com/tools/${id}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json'
