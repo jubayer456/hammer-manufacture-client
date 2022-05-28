@@ -46,7 +46,7 @@ function App() {
           <Route path="manageuser" element={<AdminAuth><ManageUser /></AdminAuth>} />
           <Route path="addproduct" element={<AdminAuth><AddProduct /></AdminAuth>} />
           <Route path="allproduct" element={<AdminAuth><AllProducts /></AdminAuth>} />
-          <Route path="payment/:id" element={<Payment />} />
+          <Route path="payment/:orderId" element={<Payment />} />
         </Route>
       </Routes>
       <ToastContainer></ToastContainer>
