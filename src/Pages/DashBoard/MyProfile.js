@@ -15,7 +15,12 @@ const MyProfile = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const imageStorage = '87daff5d6c83e393f1571b44cd608116';
-    const { data: users, isLoading, refetch } = useQuery('usersInProfile', () => fetch(`http://localhost:5000/users?email=${user.email}`).then(res => res.json()));
+    const { data: users, isLoading, refetch } = useQuery('usersInProfile', () => fetch(`http://localhost:5000/users?email=${user.email}`, {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => res.json()));
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -156,7 +161,7 @@ const MyProfile = () => {
                 </form>
                 <div>
                     {
-                        users[0].image ? <><Avatar size="160" round={true} src={users[0].image} /></> :
+                        users[0]?.image ? <><Avatar size="160" round={true} src={users[0]?.image || img} /></> :
                             <Avatar size="160" round={true} src={img} />
                     }
 

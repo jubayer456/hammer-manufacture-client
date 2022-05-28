@@ -19,7 +19,6 @@ const MyOrders = () => {
         }
     }).then(res => {
         if (res.status === 401 || res.status === 403) {
-            console.log(res);
             toast.error(`${res.statusText} Access`);
             signOut(auth);
             localStorage.removeItem('accessToken');

@@ -5,6 +5,7 @@ import Home from './Pages/Home/Home';
 import About from './Pages/About/About'
 import Blog from './Pages/Blog/Blog'
 import Login from './Pages/Login/Login';
+import AdminAuth from './Pages/Login/AdminAuth';
 import Register from './Pages/Login/Register';
 import Footer from './Pages/Shared/Footer';
 
@@ -20,6 +21,7 @@ import MyProfile from './Pages/DashBoard/MyProfile';
 import ManageUser from './Pages/DashBoard/ManageUser';
 import AddProduct from './Pages/DashBoard/AddProduct';
 import AllProducts from './Pages/DashBoard/AllProducts';
+import Payment from './Pages/DashBoard/Payment';
 
 
 function App() {
@@ -41,10 +43,10 @@ function App() {
           <Route index element={<MyProfile />} />
           <Route path="myorders" element={<MyOrders />} />
           <Route path="myreview" element={<MyReviews />} />
-          <Route path="manageuser" element={<ManageUser />} />
-          <Route path="addproduct" element={<AddProduct />} />
-          <Route path="allproduct" element={<AllProducts />} />
-
+          <Route path="manageuser" element={<AdminAuth><ManageUser /></AdminAuth>} />
+          <Route path="addproduct" element={<AdminAuth><AddProduct /></AdminAuth>} />
+          <Route path="allproduct" element={<AdminAuth><AllProducts /></AdminAuth>} />
+          <Route path="payment/:id" element={<Payment />} />
         </Route>
       </Routes>
       <ToastContainer></ToastContainer>
