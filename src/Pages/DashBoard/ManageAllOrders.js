@@ -5,13 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
-import DeleteProductModal from './DeleteProductModal';
-import ProductRow from './ProductRow';
+import DeleteOrderAdminModal from './DeleteOrderAdminModal';
+import ManageOrderRow from './ManageOrderRow';
 
-const AllProducts = () => {
-    const [deleteModal, setDeleteModal] = useState(false);
+const ManageAllOrders = () => {
+    const [orderModal, setOrderModal] = useState(null);
     const navigate = useNavigate();
-    const { data: orders, isLoading, refetch } = useQuery('AllTools', () => fetch('https://agile-chamber-23774.herokuapp.com/tools', {
+    const { data: orders, isLoading, refetch } = useQuery('AllOrders', () => fetch(`https://agile-chamber-23774.herokuapp.com/booking`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -30,45 +30,44 @@ const AllProducts = () => {
     }
     return (
         <div>
-            <h1 className='text-3xl py-5'>All products</h1>
+            <h1 className='text-3xl py-5'>Manage All Orders</h1>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table w-full">
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Image</th>
+                                <th>Client-Name</th>
                                 <th>Product-Name</th>
                                 <th>Product-price</th>
-                                <th>Min quantity</th>
-                                <th>Available Quantity</th>
+                                <th>Quantity</th>
                                 <th>Actions</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                orders.map((order, index) => <ProductRow
+                                orders.map((order, index) => <ManageOrderRow
                                     key={order._id}
                                     index={index + 1}
                                     order={order}
-                                    setDeleteModal={setDeleteModal}
-                                ></ProductRow>)
+                                    setOrderModal={setOrderModal}
+                                ></ManageOrderRow>)
                             }
 
                         </tbody>
                     </table>
                 </div>
                 {
-                    deleteModal && <DeleteProductModal
-                        deleteModal={deleteModal}
+                    orderModal && <DeleteOrderAdminModal
+                        orderModal={orderModal}
                         refetch={refetch}
-                        setDeleteModal={setDeleteModal}
-                    ></DeleteProductModal>
+                        setDeleteModal={setOrderModal}
+                    ></DeleteOrderAdminModal>
                 }
             </div>
         </div>
     );
 };
 
-export default AllProducts;
+export default ManageAllOrders;

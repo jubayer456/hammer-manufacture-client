@@ -44,7 +44,7 @@ const UserRow = ({ user, index, setRemoveUserModal, refetch }) => {
             <td>{email}</td>
             <td> {role !== 'admin' && <label onClick={() => makeAdmin(email)} className="btn btn-sm  text-base-100">Admin</label>}</td>
             <td>
-                <label onClick={() => setRemoveUserModal(user)} htmlFor="deleteUser" className="btn btn-sm btn-error text-base-100">Delete</label>
+                {role !== 'admin' && <label onClick={() => setRemoveUserModal(user)} htmlFor="deleteUser" className="btn btn-sm btn-error text-base-100">Delete</label>}
             </td>
         </tr>
     );

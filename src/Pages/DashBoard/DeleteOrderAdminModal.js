@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
-const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
-    const { _id, toolsName, quantity } = deleteModal;
+const DeleteOrderAdminModal = ({ orderModal, setOrderModal, refetch }) => {
+    const { _id, toolsName, quantity } = orderModal;
     const navigate = useNavigate();
     const deleteOrder = id => {
         fetch(`https://agile-chamber-23774.herokuapp.com/booking/${id}`, {
@@ -40,27 +40,24 @@ const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
                         })
                         .then(data => {
                             refetch();
-                            setDeleteModal(null);
+                            setOrderModal(null);
                             toast.success(`${toolsName} succesfully cancell`)
                         })
 
                 }
             })
-
-
     }
-
     return (
         <div>
-
-            <input type="checkbox" id="deleteOrder" className="modal-toggle" />
+            <input type="checkbox" id="deleteAdminOrder" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Are you sure You want to delete ${toolsName}</h3>
-                    <p className="py-4">If you click delete then You can not retrieve deleted item</p>
+                    <p className="py-4">If you click delete then You can not retrieve deleted item
+                        {quantity}</p>
                     <div className="modal-action">
                         <button onClick={() => deleteOrder(_id)} className='btn btn-sm btn-error text-base-100'>Yes</button>
-                        <label for="deleteOrder" className="btn btn-sm">No</label>
+                        <label htmlFor="deleteAdminOrder" className="btn btn-sm">No</label>
                     </div>
                 </div>
             </div>
@@ -68,4 +65,4 @@ const DeleteOrderModal = ({ deleteModal, setDeleteModal, refetch }) => {
     );
 };
 
-export default DeleteOrderModal;
+export default DeleteOrderAdminModal;

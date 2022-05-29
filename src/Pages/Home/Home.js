@@ -8,7 +8,7 @@ import Tools from './Tools';
 
 const Home = () => {
     return (
-        <div>
+        <div >
             <Banner></Banner>
             <Tools></Tools>
             <BussinessSummary></BussinessSummary>

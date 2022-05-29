@@ -10,8 +10,7 @@ const DashBoard = () => {
     return (
         <div className="drawer drawer-mobile">
             <input id="DashboardModal" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content ">
-                <h1 className='text-3xl '>Welcome to dashboard</h1>
+            <div className="drawer-content px-8">
                 <Outlet />
             </div>
             <div className="drawer-side">
@@ -24,10 +23,13 @@ const DashBoard = () => {
                             <li><Link to='myreview'>Add Review</Link></li></>
                     }
                     {
-                        admin && <>
+                        admin &&
+                        <>
                             <li><Link to='allproduct'>Manage Products</Link></li>
                             <li><Link to='addproduct'>Add Product</Link></li>
-                            <li><Link to='manageuser'>Manage Users</Link></li></>
+                            <li><Link to='manageuser'>Manage Users</Link></li>
+                            <li><Link to='manageallorder'>Manage All Order</Link></li>
+                        </>
                     }
                 </ul>
 

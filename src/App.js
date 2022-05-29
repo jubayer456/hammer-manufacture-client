@@ -22,6 +22,7 @@ import AddProduct from './Pages/DashBoard/AddProduct';
 import AllProducts from './Pages/DashBoard/AllProducts';
 import Payment from './Pages/DashBoard/Payment';
 import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
+import ManageAllOrders from './Pages/DashBoard/ManageAllOrders';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="manageuser" element={<AdminAuth><ManageUser /></AdminAuth>} />
           <Route path="addproduct" element={<AdminAuth><AddProduct /></AdminAuth>} />
           <Route path="allproduct" element={<AdminAuth><AllProducts /></AdminAuth>} />
+          <Route path="manageallorder" element={<AdminAuth><ManageAllOrders /></AdminAuth>} />
           <Route path="payment/:orderId" element={<Payment />} />
         </Route>
       </Routes>

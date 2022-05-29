@@ -68,11 +68,12 @@ const CheckoutForm = ({ order }) => {
         else {
             setSuccessError('Congrats Your payment is completed');
             toast.success('Congratulation Your payment is completed');
-            setTransactionId(paymentIntent.transactionId);
+            setTransactionId(paymentIntent.id);
+            console.log(paymentIntent);
             setCardError('');
             const payment = {
                 OrderId: _id,
-                transactionId: paymentIntent.transactionId
+                transactionId: paymentIntent.id
             }
             fetch(`https://agile-chamber-23774.herokuapp.com/booking/${_id}`, {
                 method: 'PATCH',

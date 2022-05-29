@@ -4,7 +4,7 @@ import Tool from './Tool';
 const Tools = () => {
     const [tools, setTools] = useState([]);
     useEffect(() => {
-        fetch('https://agile-chamber-23774.herokuapp.com/tools')
+        fetch('https://agile-chamber-23774.herokuapp.com/hometool')
             .then(res => res.json())
             .then(data => setTools(data))
     }, [tools])
