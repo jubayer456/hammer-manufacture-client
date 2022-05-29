@@ -3,7 +3,7 @@ import StarIcon from './StarIcon';
 const Review = ({ rev }) => {
     const { name, image, rating, review } = rev;
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card lg:card-side bg-base-100 shadow-xl">
             <div className="card-body">
                 <div className='flex'>
                     <div className="avatar flex items-center">

@@ -26,7 +26,7 @@ const PurchasePage = () => {
                 userName: user.displayName,
                 email: user.email,
                 toolsName: event.target.orderName.value,
-                price: event.target.price.value,
+                price: event.target.price.value * event.target.quantity.value,
                 quantity: event.target.quantity.value,
                 address: event.target.address.value,
                 phnNum: event.target.phnNum.value
