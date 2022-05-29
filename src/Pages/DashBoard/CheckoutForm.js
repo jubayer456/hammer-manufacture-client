@@ -23,10 +23,10 @@ const CheckoutForm = ({ order }) => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.clientSecret) {
+                if (data?.clientSecret) {
                     setClientSecret(data.clientSecret);
                 }
-            })
+            });
     }, [price])
     if (processing) {
         return <Loading></Loading>
@@ -49,7 +49,7 @@ const CheckoutForm = ({ order }) => {
         setCardError(error?.message || '');
         setSuccessError('');
         // setProcessing(true);
-        const { paymentIntent, error: intendErr } = await stripe.confirmCardPayment(
+        const { paymentIntent, error: intentErr } = await stripe.confirmCardPayment(
             clientSecret,
             {
                 payment_method: {
@@ -61,8 +61,8 @@ const CheckoutForm = ({ order }) => {
                 },
             },
         );
-        if (intendErr) {
-            setCardError(intendErr?.message);
+        if (intentErr) {
+            setCardError(intentErr?.message);
             setProcessing(false);
         }
         else {
@@ -116,7 +116,7 @@ const CheckoutForm = ({ order }) => {
             }
             {
                 successError && <>
-                    <p className='text-blue-500'>{successError}</p>
+                    <p className='text-blue-400'>{successError}</p>
                     <p className='text-blue-700'>{transactionId}</p>
                 </>
             }

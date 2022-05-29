@@ -35,7 +35,7 @@ const Login = () => {
     };
     return (
         <div>
-            <div className="card lg:card-side bg-base-100 shadow-xl mx-auto my-8">
+            <div className="card w-96  bg-base-100 shadow-xl mx-auto my-8">
                 <div className="card-body">
                     <h2 className="font-bold text-3xl text-center">Login!!!</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,7 +70,7 @@ const Login = () => {
                             </label>
                             <input
                                 type='password'
-                                placeholder="Your Email"
+                                placeholder="Your Password"
                                 className="input input-bordered w-full max-w-xs"
                                 {...register("password", {
                                     required: {
