@@ -19,7 +19,7 @@ const MyReviews = () => {
             review: event.target.review.value
         }
         if (rating > 0 && rating <= 5) {
-            fetch('https://agile-chamber-23774.herokuapp.comreviews', {
+            fetch('https://agile-chamber-23774.herokuapp.com/reviews', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
