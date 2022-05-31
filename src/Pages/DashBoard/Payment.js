@@ -9,11 +9,10 @@ const Payment = () => {
     const { orderId } = useParams();
     const stripePromise =
         loadStripe('pk_test_51L4JARD2IOxGf7i4IzxCXM5VMFsFTdIkjFMWnBl53um4DWU8gKqiw5nXD20mrkr5H7HU0XekDiPg9V3r4Vu59V1U00tPTZkLMF');
-    const { data: order, isLoading } = useQuery([Payment, orderId], () => fetch(`https://agile-chamber-23774.herokuapp.com/booking/${orderId}`
+    const { data: order, isLoading } = useQuery('Payment', () => fetch(`https://agile-chamber-23774.herokuapp.com/booking/${orderId}`
         , {
             method: 'GET',
             headers: {
-                'content-type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         }

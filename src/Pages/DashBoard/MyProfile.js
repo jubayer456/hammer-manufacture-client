@@ -113,8 +113,8 @@ const MyProfile = () => {
             <div className='hero-content flex-col lg:flex-row-reverse justify-between items-start'>
                 <div>
                     {
-                        users?.image ? <><Avatar size="160" round={true} src={users?.image} /></> :
-                            <Avatar size="160" round={true} src={img} />
+                        users?.image ? <><Avatar size="160" alt='profile' round={true} src={users?.image} /></> :
+                            <Avatar size="160" alt='defaul profile' round={true} src={img} />
                     }
 
                     <form onSubmit={handleSubmit(updateProfilePic)}>
