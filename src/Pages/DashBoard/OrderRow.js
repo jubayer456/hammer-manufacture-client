@@ -13,7 +13,7 @@ const OrderRow = ({ order, index, setDeleteModal }) => {
             <td>{phnNum}</td>
             <td>{address}</td>
             <td>{!paid && <><Link to={`/dashBoard/payment/${_id}`}><button className='btn btn-sm btn-blue-500 text-base-100 mx-1'>Pay</button></Link>
-                <label onClick={() => setDeleteModal(order)} htmFor="deleteOrder" className="btn btn-sm btn-error text-base-100 mx-1">Cencel</label>
+                <label onClick={() => setDeleteModal(order)} htmlFor="deleteOrder" className="btn btn-sm btn-error text-base-100 mx-1">Cencel</label>
             </>}
                 {paid && <span className='btn btn-success btn-sm text-base-100'>Paid</span>}</td>
 
