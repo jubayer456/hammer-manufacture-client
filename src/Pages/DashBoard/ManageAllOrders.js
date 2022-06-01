@@ -62,7 +62,7 @@ const ManageAllOrders = () => {
                     orderModal && <DeleteOrderAdminModal
                         orderModal={orderModal}
                         refetch={refetch}
-                        setDeleteModal={setOrderModal}
+                        setOrderModal={setOrderModal}
                     ></DeleteOrderAdminModal>
                 }
             </div>

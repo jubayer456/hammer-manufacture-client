@@ -37,7 +37,7 @@ const MyReviews = () => {
                     return res.json();
                 })
                 .then(data => {
-                    if (data.insertId) {
+                    if (data.acknowledged) {
                         toast.success('Successfully give the review');
                     }
                     else {
