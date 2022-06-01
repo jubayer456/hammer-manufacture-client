@@ -12,7 +12,8 @@ const Reviews = () => {
     return (
         <div className='p-12'>
             <h2 className='text-center text-3xl font-bold pb-5'>What our customer Says</h2>
-            <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+            {/* <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'> */}
+            <div class="carousel carousel-center rounded-box gap-5 p-4">
                 {
                     reviews?.map(rev => <Review
                         key={rev._id}
@@ -20,7 +21,7 @@ const Reviews = () => {
                     </Review>)
                 }
             </div>
-        </div>
+        </div >
     );
 };
 

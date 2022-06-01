@@ -19,7 +19,7 @@ const Tool = ({ tool }) => {
                 <h2 className="card-title text-lg">Available order Quantity: {availableQuantity}</h2>
                 <p><span className='font-bold'>Description: </span>{description}</p>
                 <div className="card-actions">
-                    <button onClick={() => handelOrder(_id)} className="btn btn-primary">Order Now</button>
+                    <button onClick={() => handelOrder(_id)} className="btn uppercase font-bold border-0 btn-primary">Order Now</button>
                 </div>
             </div>
         </div>

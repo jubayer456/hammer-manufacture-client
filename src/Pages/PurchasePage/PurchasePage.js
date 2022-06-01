@@ -74,7 +74,9 @@ const PurchasePage = () => {
         <div className='p-12'>
             <h1 className='text-center text-4xl pb-10 mb-6'>Purchase page</h1>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 justify-center items-center'>
-                <img src={order.image} alt="" className='w-96' style={{ height: '450px' }} />
+                <div className='flex justify-center'>
+                    <img src={order.image} alt="" className='w-72' style={{ height: '350px' }} />
+                </div>
                 <div className='text-xl'>
                     <h3 className='font-bold text-2xl'>Name: {order.name}</h3>
                     <h3 className='font-bold'>price: {order.price} $</h3>
@@ -84,63 +86,97 @@ const PurchasePage = () => {
                 </div>
 
             </div>
-            <div >
-                <h2 className='text-center text-3xl my-5'>Fill the Purchase Form</h2>
-                <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-                    <input type='text'
-                        name='name'
-                        className='input input-bordered w-full max-w-xs mx-auto'
-                        value={user.displayName}
-                    />
-                    <input type='email' name='email'
-                        className='input input-bordered w-full max-w-xs mx-auto'
-                        value={user.email}
-                    />
+            <div className="card w-96  bg-base-100 shadow-xl mx-auto my-8">
+                <div className="card-body">
+                    <h2 className='text-center text-3xl my-5'>Fill the Purchase Form</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div class="form-control w-full max-w-lg">
+                            <label class="label">
+                                <span class="label-text">Your Name:</span>
+                            </label>
+                            <input type='text'
+                                name='name'
+                                className='input input-bordered w-full max-w-xs '
+                                value={user.displayName}
+                                readOnly
+                            />
+                        </div>
+                        <div class="form-control w-full max-w-xs">
+                            <label class="label">
+                                <span class="label-text">Your Email:</span>
+                            </label>
+                            <input type='email' name='email'
+                                className='input input-bordered w-full max-w-xs '
+                                value={user.email}
+                                readOnly
+                            />
+                        </div>
+                        <div class="form-control w-full max-w-xs">
+                            <label class="label">
+                                <span class="label-text">Product Name:</span>
+                            </label>
+                            <input
+                                type='text'
+                                name='orderName'
+                                className='input input-bordered w-full max-w-xs '
+                                value={order.name}
+                            />
+                        </div>
+                        <div class="form-control w-full max-w-xs">
+                            <label class="label">
+                                <span class="label-text">Product Price:</span>
+                            </label>
+                            <input
+                                type='text'
+                                name='price'
+                                className='input input-bordered w-full max-w-xs '
+                                value={order.price}
+                            />
+                        </div>
+                        <div class="form-control w-full max-w-xs">
+                            <label class="label">
+                                <span class="label-text">Order to minimum Quantity:</span>
+                            </label>
+                            <input
+                                type='number'
+                                placeholder='Quantity'
+                                name='quantity'
+                                defaultValue='10'
+                                className='input input-bordered w-full max-w-xs'
+                                required
+                            />
+                            <p className="label-text text-red-500">{error}</p>
+                        </div>
+                        <div class="form-control w-full max-w-xs">
+                            <label class="label">
+                                <span class="label-text">Your Address:</span>
+                            </label>
+                            <input
+                                type='text'
+                                name='address'
+                                placeholder='address'
+                                className='input input-bordered w-full max-w-xs '
+                                required
+                            />
+                        </div>
+                        <div class="form-control w-full max-w-xs">
+                            <label class="label">
+                                <span class="label-text">Your Phone Number:</span>
+                            </label>
+                            <input
+                                type='text'
+                                name='phnNum'
+                                placeholder='Phone Number'
+                                className='input input-bordered w-full max-w-xs'
+                                required
+                            />
+                        </div>
+                        <input type="submit" value='Submit' className="mt-4 btn w-full max-w-xs" />
+                    </form>
+                </div>
 
-                    <input
-                        type='text'
-                        name='orderName'
-                        className='input input-bordered w-full max-w-xs mx-auto'
-                        value={order.name}
-                    />
-                    <input
-                        type='text'
-                        name='price'
-                        className='input input-bordered w-full max-w-xs mx-auto'
-                        value={order.price}
-                    />
-                    <div className="form-control w-full max-w-xs mx-auto">
-                        <input
-                            type='number'
-                            placeholder='Quantity'
-                            name='quantity'
-                            defaultValue='10'
-                            className='input input-bordered w-full max-w-xs'
-                            required
-                        />
-                        <p className="label-text text-red-500">{error}</p>
-
-                    </div>
-                    <input
-                        type='text'
-                        name='address'
-                        placeholder='address'
-                        className='input input-bordered w-full max-w-xs mx-auto'
-                        required
-                    />
-                    <input
-
-                        type='text'
-                        name='phnNum'
-                        placeholder='Phone Number'
-                        className='input input-bordered w-full max-w-xs mx-auto'
-                        required
-                    />
-
-                    <input type="submit" value='Submit' className="mx-auto btn w-full max-w-xs" />
-
-                </form>
             </div>
+
         </div>
     );
 };
